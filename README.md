@@ -1,7 +1,7 @@
 ﻿# Scandiweb React
 
 React online shopping cart.  
-Applicant: Ansis Plepis
+Applicant name and surname: Ansis Plepis
 
 # Stack
 
