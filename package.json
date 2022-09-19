@@ -1,0 +1,21 @@
+{
+  "name": "scandiweb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "gql": "cd junior-react-endpoint && npm run dev",
+    "build": "cd client && npm run build",
+    "dev": "cd client && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plepisnew/scandiweb-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plepisnew/scandiweb-react/issues"
+  },
+  "homepage": "https://github.com/plepisnew/scandiweb-react#readme"
+}
