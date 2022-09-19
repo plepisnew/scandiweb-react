@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { toggleOverlay } from "../../actions/overlayActions";
 import { connect } from "react-redux";
+import CartOverlay from "../CartOverlay";
 
 class CartAction extends React.Component {
   constructor(props) {
@@ -27,12 +28,10 @@ class CartAction extends React.Component {
         />
         <div
           className={`cart-overlay ${
-            this.state.selectorOpened && "cart-overlay-open"
+            this.state.selectorOpened ? "cart-overlay-open" : ""
           }`}
         >
-          <Link to="/cart">
-            <button>Cart</button>
-          </Link>
+          <CartOverlay />
         </div>
       </div>
     );

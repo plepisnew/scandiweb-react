@@ -68,6 +68,7 @@ const StyledCartPage = styled.div`
 
   .right-panel {
     margin-left: auto;
+    display: flex;
   }
 
   .product-brand {
@@ -86,10 +87,6 @@ const StyledCartPage = styled.div`
     font-weight: 700;
     font-size: 24px;
     margin-bottom: 10px;
-  }
-
-  .right-panel {
-    display: flex;
   }
 
   .quantity-changer-container {

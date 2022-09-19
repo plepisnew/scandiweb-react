@@ -86,6 +86,7 @@ const StyledProductPage = styled.div`
 
   .product-description {
     margin-top: 20px;
+    max-width: 400px;
   }
 
   .product-price {

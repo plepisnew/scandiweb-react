@@ -116,16 +116,23 @@ export default styled.div`
   .cart-overlay {
     position: absolute;
     z-index: 2;
-    width: 320px;
-    top: 40px;
+    min-width: 300px;
+    width: max-content;
+    top: 50px;
     right: -20px;
     padding: 32px 16px;
-    background: pink;
+    background: white;
     max-height: 70vh;
     overflow-y: scroll;
     scale: 0;
     transition: scale 200ms;
     transform-origin: top right;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .cart-overlay::-webkit-scrollbar {
+    display: none;
   }
 
   .cart-overlay-open {
