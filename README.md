@@ -1,6 +1,6 @@
 ﻿# Scandiweb React
 
-React online shopping cart.
+React online shopping cart.  
 Applicant: Ansis Plepis
 
 # Stack
