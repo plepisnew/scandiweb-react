@@ -12,6 +12,22 @@ class CartAction extends React.Component {
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      ...state,
+      cart: props.cart,
+    };
+  }
+
+  displayQuantity() {
+    const quantity = this.state.cart.reduce(
+      (previousQuantity, currentItem) =>
+        previousQuantity + currentItem.quantity,
+      0
+    );
+    if (quantity) return <div className="quantity-bubble">{quantity}</div>;
+  }
+
   render() {
     return (
       <div className="cart-action">
@@ -33,13 +49,21 @@ class CartAction extends React.Component {
         >
           <CartOverlay />
         </div>
+
+        {this.displayQuantity()}
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
 const mapDispatchToProps = {
   toggleOverlay,
 };
 
-export default connect(null, mapDispatchToProps)(CartAction);
+export default connect(mapStateToProps, mapDispatchToProps)(CartAction);

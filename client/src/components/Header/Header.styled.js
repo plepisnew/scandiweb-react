@@ -138,4 +138,21 @@ export default styled.div`
   .cart-overlay-open {
     scale: 1;
   }
+
+  .quantity-bubble {
+    position: absolute;
+    background: black;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 50%;
+    padding: 8px;
+    top: -40%;
+    right: -50%;
+  }
 `;
