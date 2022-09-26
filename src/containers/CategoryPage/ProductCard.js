@@ -5,7 +5,7 @@ import { addProduct } from "../../actions/cartActions";
 
 class ProductCard extends React.PureComponent {
   createProductImage() {
-    const { product, addProduct } = this.props;
+    const { product, addProduct, from } = this.props;
 
     return (
       <div className="product-image-container">
@@ -22,7 +22,7 @@ class ProductCard extends React.PureComponent {
             }}
           />
         )}
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.id}`} state={{ from }}>
           <img
             src={product.gallery[0]}
             alt={product.name}

@@ -49,6 +49,7 @@ class Selection extends React.PureComponent {
         <button
           className={`add-to-cart-btn ${!product.inStock && "disabled"}`}
           onClick={() => {
+            this.props.navigateBack();
             addProduct({
               product: this.state.product,
               attributes: this.state.attributes,

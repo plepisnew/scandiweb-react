@@ -3,12 +3,19 @@ import Display from "./Display";
 import Gallery from "./Gallery";
 import StyledProductPage from "./ProductPage.styled";
 import Selection from "./Selection";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { GET_PRODUCT } from "../../GraphQL/Queries";
 import QueryHandler from "../../GraphQL/QueryHandler";
 
 function withParams(Component) {
-  return (props) => <Component {...props} params={useParams()} />;
+  return (props) => (
+    <Component
+      {...props}
+      params={useParams()}
+      navigate={useNavigate()}
+      location={useLocation()}
+    />
+  );
 }
 
 class ProductPage extends React.PureComponent {
@@ -36,7 +43,13 @@ class ProductPage extends React.PureComponent {
             setDisplayImage={this.setDisplayImage}
           />
           <Display image={data.product.gallery[this.state.displayImage]} />
-          <Selection product={data.product} />
+          <Selection
+            product={data.product}
+            navigateBack={() => {
+              const { navigate, location } = this.props;
+              navigate(location.state.from || "category/all");
+            }}
+          />
         </StyledProductPage>
       ),
     });

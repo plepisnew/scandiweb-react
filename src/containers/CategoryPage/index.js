@@ -11,8 +11,13 @@ function withParams(Component) {
 
 class CategoryPage extends React.PureComponent {
   createProductCards(products) {
+    const { category } = this.props.params;
     return products.map((product) => (
-      <ProductCard product={product} key={product.id} />
+      <ProductCard
+        product={product}
+        key={product.id}
+        from={`/category/${category}`}
+      />
     ));
   }
 
