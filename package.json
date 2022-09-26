@@ -1,21 +1,45 @@
 {
-  "name": "scandiweb",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "@reduxjs/toolkit": "^1.8.5",
+    "graphql": "^16.6.0",
+    "html-react-parser": "^3.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.4.0",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.0"
+  },
   "scripts": {
-    "gql": "cd junior-react-endpoint && npm run dev",
-    "build": "cd client && npm run build",
-    "dev": "cd client && npm run start"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "gql": "cd junior-react-endpoint && npm run dev"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/plepisnew/scandiweb-react.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/plepisnew/scandiweb-react/issues"
+  "devDependencies": {
+    "styled-components": "^5.3.5"
   },
-  "homepage": "https://github.com/plepisnew/scandiweb-react#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
