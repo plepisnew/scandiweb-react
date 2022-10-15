@@ -12,7 +12,7 @@ function withNavigation(Component) {
 class Selection extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { product } = props;
+    const { product } = this.props;
     this.state = {
       product,
       attributes: product.attributes.map((attribute) => 0),

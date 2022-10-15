@@ -8,20 +8,23 @@ import ProductPage from "../ProductPage";
 import CartPage from "../CartPage";
 import GreyBackground from "../../components/GreyBackground";
 import { connect } from "react-redux";
+import Page from "../Page";
 
 class App extends React.PureComponent {
   render() {
     const { overlay } = this.props;
     return (
       <Router>
-        <Routes>
-          <Route path="/" element={<CategoryPage />} />
-          <Route path="/category/:category" element={<CategoryPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/cart" element={<CartPage />} />
-        </Routes>
+        <Page>
+          <Routes>
+            <Route path="/" element={<CategoryPage />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/cart" element={<CartPage />} />
+          </Routes>
+          <GreyBackground active={overlay} />
+        </Page>
 
-        <GreyBackground active={overlay} />
         <Header />
         <GlobalStyle />
       </Router>

@@ -2,22 +2,11 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 
-    html, body, #root {
-        height: 100%;
-    }
-
-    .grey {
-        min-height: 100%;
-        overflow-y: auto;
-        flex: 1;
-    }
-
-    *:not(.grey) {
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: Raleway;
-        max-width: 1440px;
     }
 
 
@@ -34,9 +23,10 @@ export default createGlobalStyle`
         padding: 50px 80px;
     }
 
-    // Center pages in the middle of the screen
-    .page, .header, .grey {
+    ${"" /* Limit width of header and page but not grey background */}
+    .page > div:not(.grey), .header {
         margin: 0 auto;
+        max-width: 1440px;
     }
 
 `;

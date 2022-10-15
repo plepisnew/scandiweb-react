@@ -32,9 +32,9 @@ class ProductPage extends React.PureComponent {
       query: GET_PRODUCT,
       variables: { id },
       loadedElement: (data) => {
-        const { product } = data.product;
+        const product = data.product;
         return (
-          <StyledProductPage className="page">
+          <StyledProductPage>
             <Gallery
               images={product.gallery}
               setDisplayImage={this.setDisplayImage}

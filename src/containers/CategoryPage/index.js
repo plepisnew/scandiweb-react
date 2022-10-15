@@ -29,7 +29,7 @@ class CategoryPage extends React.PureComponent {
       variables: { category: category || "all" },
 
       loadedElement: (data) => (
-        <StyledCategoryPage className="page">
+        <StyledCategoryPage>
           <div className="category-title">{category}</div>
           <div className="product-cards">
             {this.createProductCards(data.category.products)}

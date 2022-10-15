@@ -215,7 +215,7 @@ class CartPage extends React.PureComponent {
     const { cart } = this.props;
 
     return (
-      <StyledCartPage className="page">
+      <StyledCartPage>
         <p className="cart-title">cart</p>
         <div className="cart-items">{this.createCartItems(cart)}</div>
         {this.createPurchaseInfo()}
