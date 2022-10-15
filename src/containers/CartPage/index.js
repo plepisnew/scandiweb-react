@@ -33,7 +33,12 @@ class CartPage extends React.PureComponent {
    * @param {number} index selected attribute
    */
   setAttribute(itemIndex, attributeIndex, index) {
-    this.props.updateAttribute({ itemIndex, attributeIndex, index });
+    const { updateAttribute } = this.props;
+    updateAttribute({ itemIndex, attributeIndex, index });
+  }
+
+  mod(i, j) {
+    return ((i % j) + j) % j;
   }
 
   createCartItems(items) {
@@ -113,42 +118,40 @@ class CartPage extends React.PureComponent {
                 alt="display"
                 className="display-image"
               />
-              {/* Instead of having a cyclic switcher, I added min and max index since it felt nicer */}
-              <div className="image-switcher-container">
-                <button
-                  className="image-switcher"
-                  onClick={() => {
-                    const newIndex = displayIndex[itemIndex] - 1;
-                    this.setState({
-                      displayIndex: displayIndex.map((i, j) => {
-                        if (j === itemIndex) return newIndex < 0 ? 0 : newIndex;
-                        return i;
-                      }),
-                    });
-                  }}
-                >
-                  {"<"}
-                </button>
-                <button
-                  className="image-switcher"
-                  onClick={() => {
-                    const newIndex = displayIndex[itemIndex] + 1;
-                    this.setState({
-                      displayIndex: displayIndex.map((i, j) => {
-                        if (
-                          j === itemIndex &&
-                          newIndex < product.gallery.length
-                        ) {
-                          return newIndex;
-                        }
-                        return i;
-                      }),
-                    });
-                  }}
-                >
-                  {">"}
-                </button>
-              </div>
+              {product.gallery.length !== 1 && (
+                <div className="image-switcher-container">
+                  <button
+                    className="image-switcher"
+                    onClick={() => {
+                      const newIndex = this.mod(
+                        displayIndex[itemIndex] - 1,
+                        product.gallery.length
+                      );
+                      this.setState({
+                        displayIndex: displayIndex.map((i, j) =>
+                          j === itemIndex ? newIndex : i
+                        ),
+                      });
+                    }}
+                  >
+                    {"<"}
+                  </button>
+                  <button
+                    className="image-switcher"
+                    onClick={() => {
+                      const newIndex =
+                        (displayIndex[itemIndex] + 1) % product.gallery.length;
+                      this.setState({
+                        displayIndex: displayIndex.map((i, j) =>
+                          j === itemIndex ? newIndex : i
+                        ),
+                      });
+                    }}
+                  >
+                    {">"}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         );
@@ -166,7 +169,7 @@ class CartPage extends React.PureComponent {
   createPurchaseInfo() {
     const totalCost = this.getTotalCost();
     const { currency } = this.props;
-
+    const { cart } = this.state;
     return (
       <div className="purchase-info">
         <span className="purchase-key">Tax 21%:</span>
@@ -176,7 +179,7 @@ class CartPage extends React.PureComponent {
         </span>
         <span className="purchase-key">Quantity:</span>
         <span className="purchase-value">
-          {this.state.cart.reduce(
+          {cart.reduce(
             (previousQuantity, currentItem) =>
               previousQuantity + currentItem.quantity,
             0

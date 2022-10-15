@@ -3,19 +3,12 @@ import Display from "./Display";
 import Gallery from "./Gallery";
 import StyledProductPage from "./ProductPage.styled";
 import Selection from "./Selection";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { GET_PRODUCT } from "../../GraphQL/Queries";
 import QueryHandler from "../../GraphQL/QueryHandler";
 
 function withParams(Component) {
-  return (props) => (
-    <Component
-      {...props}
-      params={useParams()}
-      navigate={useNavigate()}
-      location={useLocation()}
-    />
-  );
+  return (props) => <Component {...props} params={useParams()} />;
 }
 
 class ProductPage extends React.PureComponent {
@@ -33,25 +26,24 @@ class ProductPage extends React.PureComponent {
   };
 
   render() {
+    const { id } = this.props.params;
+    const { displayImage } = this.state;
     return QueryHandler({
       query: GET_PRODUCT,
-      variables: { id: this.props.params.id },
-      loadedElement: (data) => (
-        <StyledProductPage className="page">
-          <Gallery
-            images={data.product.gallery}
-            setDisplayImage={this.setDisplayImage}
-          />
-          <Display image={data.product.gallery[this.state.displayImage]} />
-          <Selection
-            product={data.product}
-            navigateBack={() => {
-              const { navigate, location } = this.props;
-              navigate(location.state.from || "category/all");
-            }}
-          />
-        </StyledProductPage>
-      ),
+      variables: { id },
+      loadedElement: (data) => {
+        const { product } = data.product;
+        return (
+          <StyledProductPage className="page">
+            <Gallery
+              images={product.gallery}
+              setDisplayImage={this.setDisplayImage}
+            />
+            <Display image={product.gallery[displayImage]} />
+            <Selection product={product} />
+          </StyledProductPage>
+        );
+      },
     });
   }
 }

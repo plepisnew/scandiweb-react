@@ -12,12 +12,13 @@ class Navigation extends React.PureComponent {
   }
 
   createNavItems(categories) {
+    const { selectedItem } = this.state;
     return categories.map((category) => {
       return (
         <div
           key={category.name}
           className={`nav-item ${
-            this.state.selectedItem === category.name ? "selected" : ""
+            selectedItem === category.name ? "selected" : ""
           }`}
         >
           <Link

@@ -1,6 +1,8 @@
+import { Actions } from "../reducers/currency";
+
 const setCurrency = (currency) => {
   return {
-    type: "SET_CURRENCY",
+    type: Actions.SET_CURRENCY,
     payload: currency,
   };
 };

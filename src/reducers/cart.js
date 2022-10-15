@@ -1,11 +1,18 @@
 import itemEquals from "../utils/itemEquals";
 
+export const Actions = {
+  CLEAR_CART: "CLEAR_CART",
+  ADD_PRODUCT: "ADD_PRODUCT",
+  REMOVE_PRODUCT: "REMOVE_PRODUCT",
+  UPDATE_ATTRIBUTE: "UPDATE_ATTRIBUTE",
+};
+
 const cart = (state = [], action) => {
   let productExists = false;
   switch (action.type) {
-    case "CLEAR_CART":
+    case Actions.CLEAR_CART:
       return [];
-    case "ADD_PRODUCT":
+    case Actions.ADD_PRODUCT:
       for (let i = 0; i < state.length; i++) {
         if (itemEquals(state[i], action.payload)) {
           productExists = true;
@@ -18,7 +25,7 @@ const cart = (state = [], action) => {
             : cartItem
         );
       return [...state, { ...action.payload, quantity: 1 }];
-    case "REMOVE_PRODUCT":
+    case Actions.REMOVE_PRODUCT:
       return state
         .map((cartItem) => {
           return itemEquals(cartItem, action.payload)
@@ -26,7 +33,7 @@ const cart = (state = [], action) => {
             : cartItem;
         })
         .filter((item) => item.quantity !== 0);
-    case "UPDATE_ATTRIBUTE":
+    case Actions.UPDATE_ATTRIBUTE:
       // Updating attributes
 
       // JSON parse to avoid mutating state by getting deep copy

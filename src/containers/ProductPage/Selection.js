@@ -3,6 +3,11 @@ import Attribute from "./Attribute";
 import { connect } from "react-redux";
 import { addProduct } from "../../actions/cartActions";
 import parse from "html-react-parser";
+import { useNavigate } from "react-router-dom";
+
+function withNavigation(Component) {
+  return (props) => <Component {...props} navigate={useNavigate()} />;
+}
 
 class Selection extends React.PureComponent {
   constructor(props) {
@@ -15,8 +20,9 @@ class Selection extends React.PureComponent {
   }
 
   setAttribute = (index, value) => {
+    const { attributes } = this.state;
     this.setState({
-      attributes: this.state.attributes.map((attribute, attributeIndex) =>
+      attributes: attributes.map((attribute, attributeIndex) =>
         index === attributeIndex ? value : attribute
       ),
     });
@@ -49,10 +55,12 @@ class Selection extends React.PureComponent {
         <button
           className={`add-to-cart-btn ${!product.inStock && "disabled"}`}
           onClick={() => {
-            this.props.navigateBack();
+            const { navigate } = this.props;
+            const { product, attributes } = this.state;
+            navigate("/");
             addProduct({
-              product: this.state.product,
-              attributes: this.state.attributes,
+              product,
+              attributes,
             });
           }}
         >
@@ -75,4 +83,6 @@ const mapDispatchToProps = {
   addProduct,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Selection);
+export default withNavigation(
+  connect(mapStateToProps, mapDispatchToProps)(Selection)
+);

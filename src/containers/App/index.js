@@ -1,7 +1,5 @@
 import React from "react";
-import client from "../../GraphQL/ApolloClient";
 import GlobalStyle from "./GlobalStyle";
-import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "../../components/Header";
@@ -13,21 +11,20 @@ import { connect } from "react-redux";
 
 class App extends React.PureComponent {
   render() {
+    const { overlay } = this.props;
     return (
-      <ApolloProvider client={client}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<CategoryPage />} />
-            <Route path="/category/:category" element={<CategoryPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage />} />
-          </Routes>
+      <Router>
+        <Routes>
+          <Route path="/" element={<CategoryPage />} />
+          <Route path="/category/:category" element={<CategoryPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
 
-          <GreyBackground active={this.props.overlay} />
-          <Header />
-          <GlobalStyle />
-        </Router>
-      </ApolloProvider>
+        <GreyBackground active={overlay} />
+        <Header />
+        <GlobalStyle />
+      </Router>
     );
   }
 }

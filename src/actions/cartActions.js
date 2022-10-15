@@ -1,12 +1,14 @@
+import { Actions } from "../reducers/cart";
+
 const clearCart = () => {
   return {
-    type: "CLEAR_CART",
+    type: Actions.CLEAR_CART,
   };
 };
 
 const addProduct = ({ product, attributes }) => {
   return {
-    type: "ADD_PRODUCT",
+    type: Actions.ADD_PRODUCT,
     payload: {
       product,
       attributes,
@@ -17,7 +19,7 @@ const addProduct = ({ product, attributes }) => {
 const removeProduct = ({ product, attributes }) => {
   // id is not enough since attributeset is required
   return {
-    type: "REMOVE_PRODUCT",
+    type: Actions.REMOVE_PRODUCT,
     payload: {
       product,
       attributes,
@@ -27,7 +29,7 @@ const removeProduct = ({ product, attributes }) => {
 
 const updateAttribute = ({ itemIndex, attributeIndex, index }) => {
   return {
-    type: "UPDATE_ATTRIBUTE",
+    type: Actions.UPDATE_ATTRIBUTE,
     payload: {
       itemIndex,
       attributeIndex,

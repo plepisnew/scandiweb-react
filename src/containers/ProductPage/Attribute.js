@@ -12,7 +12,7 @@ class Attribute extends React.PureComponent {
 
   createSelector(attribute) {
     const { selectedAttribute } = this.state;
-    const { setAttribute } = this.props;
+    const { setAttribute, disabled } = this.props;
     switch (attribute.type) {
       case "swatch":
         return attribute.items.map((item, index) => (
@@ -21,16 +21,17 @@ class Attribute extends React.PureComponent {
               "swatch-selector " +
               (selectedAttribute === index && "swatch-selected")
             }
-            onClick={() => {
-              this.setState({
-                selectedAttribute: index,
-              });
-              setAttribute(index);
-            }}
-            key={attribute.items[index].id}
             style={{
               background: attribute.items[index].value,
             }}
+            onClick={() => {
+              if (!disabled)
+                this.setState({
+                  selectedAttribute: index,
+                });
+              if (setAttribute) setAttribute(index);
+            }}
+            key={attribute.items[index].id}
           >
             &nbsp;
           </div>
@@ -43,10 +44,11 @@ class Attribute extends React.PureComponent {
               (selectedAttribute === index && "text-selected")
             }
             onClick={() => {
-              this.setState({
-                selectedAttribute: index,
-              });
-              setAttribute(index);
+              if (!disabled)
+                this.setState({
+                  selectedAttribute: index,
+                });
+              if (setAttribute) setAttribute(index);
             }}
             key={attribute.items[index].id}
           >

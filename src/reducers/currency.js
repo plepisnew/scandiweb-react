@@ -1,3 +1,7 @@
+export const Actions = {
+  SET_CURRENCY: "SET_CURRENCY",
+};
+
 const currency = (
   state = {
     label: "USD",
@@ -6,7 +10,7 @@ const currency = (
   action
 ) => {
   switch (action.type) {
-    case "SET_CURRENCY":
+    case Actions.SET_CURRENCY:
       return {
         label: action.payload.label,
         symbol: action.payload.symbol,

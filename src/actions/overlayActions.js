@@ -1,13 +1,15 @@
+import { Actions } from "../reducers/overlay";
+
 const setOverlay = (value) => {
   return {
-    type: "SET_OVERLAY",
+    type: Actions.SET_OVERLAY,
     payload: value,
   };
 };
 
 const toggleOverlay = () => {
   return {
-    type: "TOGGLE_OVERLAY",
+    type: Actions.TOGGLE_OVERLAY,
   };
 };
 

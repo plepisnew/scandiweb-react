@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 export default styled.div`
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 80px;
   right: 0;
-  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  ${"" /* height: 100%; */}
   background: black;
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
   opacity: ${(props) => (props.active ? 0.22 : 0)};

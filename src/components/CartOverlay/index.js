@@ -7,6 +7,7 @@ import {
   removeProduct,
   updateAttribute,
 } from "../../actions/cartActions";
+import { setOverlay } from "../../actions/overlayActions";
 import { Link } from "react-router-dom";
 
 class CartOverlay extends React.PureComponent {
@@ -25,7 +26,8 @@ class CartOverlay extends React.PureComponent {
   }
 
   setAttribute(itemIndex, attributeIndex, index) {
-    this.props.updateAttribute({ itemIndex, attributeIndex, index });
+    const { updateAttribute } = this.props;
+    updateAttribute({ itemIndex, attributeIndex, index });
   }
 
   createCartItems() {
@@ -41,6 +43,8 @@ class CartOverlay extends React.PureComponent {
           )[0];
           const selectedCost = selectedPrice.amount;
 
+          const { cart } = this.state;
+
           const createDataPanel = () => {
             return (
               <div className="left-panel">
@@ -53,14 +57,10 @@ class CartOverlay extends React.PureComponent {
                 <div className="attributes">
                   {product.attributes.map((attribute, attributeIndex) => (
                     <Attribute
-                      setAttribute={(index) =>
-                        this.setAttribute(itemIndex, attributeIndex, index)
-                      }
+                      disabled={true}
                       attribute={attribute}
                       key={attribute.id}
-                      index={
-                        this.state.cart[itemIndex].attributes[attributeIndex]
-                      }
+                      index={cart[itemIndex].attributes[attributeIndex]}
                     />
                   ))}
                 </div>
@@ -83,9 +83,7 @@ class CartOverlay extends React.PureComponent {
                   >
                     +
                   </button>
-                  <p className="quantity">
-                    {this.state.cart[itemIndex].quantity}
-                  </p>
+                  <p className="quantity">{cart[itemIndex].quantity}</p>
                   <button
                     className="quantity-changer"
                     onClick={() => {
@@ -135,11 +133,12 @@ class CartOverlay extends React.PureComponent {
   }
 
   createTitle() {
+    const { cart } = this.state;
     return (
       <div className="overlay-title">
         <span className="my-bag">My Bag, </span>
         <span className="item-count">
-          {this.state.cart.reduce(
+          {cart.reduce(
             (previousQuantity, currentItem) =>
               previousQuantity + currentItem.quantity,
             0
@@ -164,10 +163,13 @@ class CartOverlay extends React.PureComponent {
   }
 
   createCartButtons() {
+    const { setOverlay } = this.props;
     return (
       <div className="cart-buttons">
         <Link className="link" to="/cart">
-          <button className="view-bag">view bag</button>
+          <button className="view-bag" onClick={() => setOverlay(false)}>
+            view bag
+          </button>
         </Link>
         <Link className="link">
           <button className="checkout" to="/cart">
@@ -194,6 +196,7 @@ const mapStateToProps = (state) => {
   return {
     currency: state.currency,
     cart: state.cart,
+    overlay: state.overlay,
   };
 };
 
@@ -201,6 +204,7 @@ const mapDispatchToProps = {
   addProduct,
   removeProduct,
   updateAttribute,
+  setOverlay,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);
