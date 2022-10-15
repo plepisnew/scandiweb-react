@@ -14,7 +14,8 @@ Applicant name and surname: Ansis Plepis
 - Destructured all objects that access properties of `this.props` and `this.state`
 
 ### Commits: 
-- 556a1de763c343fefbb74a57eaa9895c99416e78
+- [f37e8bdc79c0651705263100153e834cc55c6640](https://github.com/plepisnew/scandiweb-react/commit/f37e8bdc79c0651705263100153e834cc55c6640)
+- [d6f1e97542327d970a356a81dc99e3c2048f99b2](https://github.com/plepisnew/scandiweb-react/commit/d6f1e97542327d970a356a81dc99e3c2048f99b2)
 
 ## Update 26.09.2022.
 ### Changes:
@@ -22,7 +23,9 @@ Applicant name and surname: Ansis Plepis
 - Better code readability (render methods, prop/state destructuring, cleaner setState)
 - Out of stock products can be viewed, but cannot be added to cart
 - Design fixes (max width 1440px, fixed widths for product cards, cart overlay and images)
-- Other tiny fixes https://github.com/plepisnew/scandiweb-react/commit/98b1afcd750e1b7f1e0ae91e7b72810c4fedd2b0
+- Other tiny fixes
+### Commits:
+- https://github.com/plepisnew/scandiweb-react/commit/98b1afcd750e1b7f1e0ae91e7b72810c4fedd2b0
 
 ## Update 21.09.2022.
 ### Changes:
