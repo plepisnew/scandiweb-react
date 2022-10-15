@@ -3,6 +3,15 @@
 React online shopping cart.  
 Applicant name and surname: Ansis Plepis
 
+Update 16.10.2022.
+- The grey shadow no longer has margins on the left and right sides, taking up the full width of the page (when the Cart Overlay is opened)
+- Cart Overlay is closed when a click occurs outside of the overlay or the link changes.
+- Attributes in the overlay are non-clickable
+- The slider is infinite (using modular arithmetic instead of min-max).
+- Arrows for display images are not shown if they do nothing (if only 1 image to display)
+- React Redux: Action names are defined in a single object instead of in 2 different files, potentially causing clashes.
+- Destructured all objects that access properties of `this.props` and `this.state`
+
 Update 26.09.2022.
 - Added automatic backwards navigation when adding an item to cart from PDP.
 - Better code readability (render methods, prop/state destructuring, cleaner setState)
